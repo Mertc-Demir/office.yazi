@@ -15,14 +15,14 @@ function M:peek(job)
 
 	ya.sleep(math.max(0, rt.preview.image_delay / 1000 + start - os.clock()))
 	ya.image_show(cache, job.area)
-	ya.preview_widgets(job, {})
+	ya.preview_widget(job, {})
 end
 
 function M:seek(job)
 	local h = cx.active.current.hovered
 	if h and h.url == job.file.url then
 		local step = ya.clamp(-1, job.units, 1)
-		ya.manager_emit("peek", { math.max(0, cx.active.preview.skip + step), only_if = job.file.url })
+		ya.mgr_emit("peek", { math.max(0, cx.active.preview.skip + step), only_if = job.file.url })
 	end
 end
 
